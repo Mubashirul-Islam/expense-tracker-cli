@@ -1,0 +1,29 @@
+2026-01-28 14:08:23,500 - tracker.cli - INFO - Command: add - category=transport, amount=80.0
+2026-01-28 14:08:23,505 - tracker.storage - INFO - Loaded 0 expenses from data/expenses.json
+2026-01-28 14:08:23,505 - tracker.storage - INFO - Loaded 0 expenses from data/expenses.json
+2026-01-28 14:08:23,506 - tracker.storage - INFO - Saved 1 expenses to data/expenses.json
+2026-01-28 14:08:23,506 - tracker.storage - INFO - Added expense: EXP-20260125-0001
+2026-01-28 14:08:23,506 - tracker.service - INFO - Added expense: EXP-20260125-0001
+2026-01-28 17:26:41,073 - tracker.cli - INFO - Command: add - category=transport, amount=20.0
+2026-01-28 17:26:41,076 - tracker.storage - INFO - Loaded 1 expenses from data/expenses.json
+2026-01-28 17:26:41,076 - tracker.storage - INFO - Loaded 1 expenses from data/expenses.json
+2026-01-28 17:26:41,076 - tracker.storage - INFO - Saved 2 expenses to data/expenses.json
+2026-01-28 17:26:41,076 - tracker.storage - INFO - Added expense: EXP-20260125-0002
+2026-01-28 17:26:41,076 - tracker.service - INFO - Added expense: EXP-20260125-0002
+2026-01-28 17:43:29,499 - tracker.cli - INFO - Command: add - category=transport, amount=20.0
+2026-01-28 17:43:29,502 - tracker.storage - INFO - Loaded 2 expenses from data/expenses.json
+2026-01-28 17:43:29,502 - tracker.storage - INFO - Loaded 2 expenses from data/expenses.json
+2026-01-28 17:43:29,502 - tracker.storage - INFO - Saved 3 expenses to data/expenses.json
+2026-01-28 17:43:29,502 - tracker.storage - INFO - Added expense: EXP-20260125-0003
+2026-01-28 17:43:29,502 - tracker.service - INFO - Added expense: EXP-20260125-0003
+2026-01-28 17:45:24,530 - tracker.cli - INFO - Command: delete - id=EXP-20260125-0001
+2026-01-28 17:45:24,530 - tracker.storage - INFO - Loaded 3 expenses from data/expenses.json
+2026-01-28 17:45:24,531 - tracker.storage - INFO - Saved 2 expenses to data/expenses.json
+2026-01-28 17:45:24,531 - tracker.storage - INFO - Deleted expense: EXP-20260125-0001
+2026-01-28 17:45:24,531 - tracker.service - INFO - Deleted expense: EXP-20260125-0001
+2026-01-28 17:46:04,094 - tracker.cli - INFO - Command: add - category=food, amount=10.0
+2026-01-28 17:46:04,098 - tracker.storage - INFO - Loaded 2 expenses from data/expenses.json
+2026-01-28 17:46:04,099 - tracker.storage - INFO - Loaded 2 expenses from data/expenses.json
+2026-01-28 17:46:04,099 - tracker.storage - INFO - Saved 3 expenses to data/expenses.json
+2026-01-28 17:46:04,099 - tracker.storage - INFO - Added expense: EXP-20260125-0004
+2026-01-28 17:46:04,099 - tracker.service - INFO - Added expense: EXP-20260125-0004

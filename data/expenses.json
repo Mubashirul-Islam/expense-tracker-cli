@@ -1,0 +1,26 @@
+[
+  {
+    "id": "EXP-20260125-0002",
+    "date": "2026-01-25",
+    "category": "transport",
+    "amount": 20.0,
+    "note": "Bus",
+    "currency": "BDT"
+  },
+  {
+    "id": "EXP-20260125-0003",
+    "date": "2026-01-25",
+    "category": "transport",
+    "amount": 20.0,
+    "note": "CNG",
+    "currency": "BDT"
+  },
+  {
+    "id": "EXP-20260125-0004",
+    "date": "2026-01-25",
+    "category": "food",
+    "amount": 10.0,
+    "note": "Chips",
+    "currency": "BDT"
+  }
+]
