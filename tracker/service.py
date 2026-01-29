@@ -133,12 +133,12 @@ class ExpenseService:
         if limit:
             filtered = filtered[:limit]
         
-        logger.info(f"Listed {len(filtered)} expenses with filters")
+        logger.info(f"Listed {len(filtered)} expenses")
         return filtered
     
     def summary(
         self,
-        month: Optional[str] = None,
+        month: str = datetime.now().strftime("%Y-%m"),
         category: Optional[str] = None,
         from_date: Optional[str] = None,
         to_date: Optional[str] = None
@@ -168,6 +168,9 @@ class ExpenseService:
         
         # Calculate totals
         grand_total = sum(exp.amount for exp in filtered)
+
+        # Calculate highest expense
+        max_expense = max((exp.amount for exp in filtered), default=0.0)
         
         # Group by category
         category_totals = {}
@@ -180,7 +183,8 @@ class ExpenseService:
             "count": len(filtered),
             "grand_total": grand_total,
             "totals_by_category": category_totals,
-            "currency": filtered[0].currency if filtered else "BDT"
+            "currency": filtered[0].currency if filtered else "BDT",
+            "max_expense": max_expense
         }
         
         logger.info(f"Generated summary: {len(filtered)} expenses, total {grand_total}")

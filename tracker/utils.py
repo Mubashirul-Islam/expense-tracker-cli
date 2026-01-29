@@ -56,6 +56,8 @@ def generate_expense_id(date: str, existing_ids: list[str]) -> str:
     """
     date_part = date.replace("-", "")
     prefix = f"EXP-{date_part}-"
+    if not existing_ids:
+        return f"{prefix}0001"
     last_id = existing_ids[-1]
     next_num = int(last_id.split("-")[-1]) + 1
     

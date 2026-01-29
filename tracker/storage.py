@@ -50,7 +50,7 @@ class ExpenseStorage:
             data = self.filepath.read_text()
             expenses_data = json.loads(data)
             expenses = [Expense.from_dict(exp) for exp in expenses_data]
-            logger.info(f"Loaded {len(expenses)} expenses from {self.filepath}")
+            #logger.info(f"Loaded {len(expenses)} expenses from {self.filepath}")
             return expenses
         except json.JSONDecodeError as e:
             logger.error(f"Corrupted JSON file {self.filepath}: {e}")
@@ -88,7 +88,7 @@ class ExpenseStorage:
         expenses = self.load_expenses()
         expenses.append(expense)
         self.save_expenses(expenses)
-        logger.info(f"Added expense: {expense.id}")
+        #logger.info(f"Added expense: {expense.id}")
     
     def get_all_ids(self) -> List[str]:
         """
@@ -119,7 +119,7 @@ class ExpenseStorage:
         
         if len(expenses) < original_count:
             self.save_expenses(expenses)
-            logger.info(f"Deleted expense: {expense_id}")
+            #logger.info(f"Deleted expense: {expense_id}")
             return True
         return False
     
@@ -143,7 +143,7 @@ class ExpenseStorage:
                 exp_dict.update(updates)
                 expenses[i] = Expense.from_dict(exp_dict)
                 self.save_expenses(expenses)
-                logger.info(f"Updated expense: {expense_id}")
+                #logger.info(f"Updated expense: {expense_id}")
                 return expenses[i]
         
         return None

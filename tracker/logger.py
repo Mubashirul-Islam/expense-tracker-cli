@@ -12,6 +12,5 @@ def setup_logging():
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[
             logging.FileHandler("logs/tracker.log"),
-            logging.StreamHandler(sys.stdout)
         ]
     )

@@ -3,6 +3,7 @@ Data models for the expense tracker.
 """
 
 from dataclasses import dataclass, asdict
+from datetime import datetime
 
 
 @dataclass
@@ -14,6 +15,7 @@ class Expense:
     amount: float
     note: str = ""
     currency: str = "BDT"
+    created_at: str = datetime.now().isoformat(timespec='seconds')
     
     def to_dict(self) -> dict:
         """Convert expense to dictionary."""
@@ -26,6 +28,6 @@ class Expense:
     
     def __str__(self) -> str:
         """String representation for display."""
-        return f"{self.id} | {self.date} | {self.category} | {self.amount:.2f} {self.currency} | {self.note}"
+        return f"{self.id} | {self.date} | {self.category:15s} | {self.amount:10.2f} {self.currency} | {self.note}"
 
 

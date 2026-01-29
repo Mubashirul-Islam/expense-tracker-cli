@@ -3,6 +3,7 @@ Command-line interface for expense tracker.
 """
 
 import argparse
+from datetime import datetime
 import logging
 import sys
 from typing import Optional
@@ -16,7 +17,7 @@ logger = logging.getLogger(__name__)
 def cmd_add(args, service: ExpenseService):
     """Handle add command."""
     try:
-        logger.info(f"Command: add - category={args.category}, amount={args.amount}")
+        logger.info(" | ".join(f"{k}:{v}" for k,v in vars(args).items() if v not in [None, ""]))
         
         expense = service.add_expense(
             date=args.date,
@@ -41,7 +42,7 @@ def cmd_add(args, service: ExpenseService):
 def cmd_list(args, service: ExpenseService):
     """Handle list command."""
     try:
-        logger.info(f"Command: list - filters: month={args.month}, category={args.category}")
+        logger.info(" | ".join(f"{k}:{v}" for k,v in vars(args).items() if v not in [None, ""]))
         
         expenses = service.list_expenses(
             month=args.month,
@@ -56,15 +57,15 @@ def cmd_list(args, service: ExpenseService):
         if not expenses:
             print("No expenses found")
             return
-        
-        print(f"\nFound {len(expenses)} expense(s):\n")
+
+        print(f"\n{'ID':17s} | {'Date':10s} | {'Category':15s} | {'Amount':>14s} | Note")
         print("-" * 80)
         
         for expense in expenses:
             print(expense)
         
         print("-" * 80)
-        print(f"Total: {len(expenses)} expense(s)")
+        print(f"Total: {len(expenses)} expense(s)\n")
         
     except Exception as e:
         logger.error(f"Error listing expenses: {e}")
@@ -75,7 +76,7 @@ def cmd_list(args, service: ExpenseService):
 def cmd_summary(args, service: ExpenseService):
     """Handle summary command."""
     try:
-        logger.info(f"Command: summary - filters: month={args.month}, category={args.category}")
+        logger.info(" | ".join(f"{k}:{v}" for k,v in vars(args).items() if v not in [None, ""]))
         
         summary = service.summary(
             month=args.month,
@@ -94,11 +95,14 @@ def cmd_summary(args, service: ExpenseService):
         
         # Display filters if any
         if args.month:
-            print(f"Period: {args.month}")
+            print(f"Period: {args.month }")
         elif getattr(args, 'from', None) or args.to:
             from_date = getattr(args, 'from', None) or "start"
             to_date = args.to or "end"
             print(f"Period: {from_date} to {to_date}")
+
+        else:
+            print(f"Period: {datetime.now().strftime('%Y-%m')}")    
         
         if args.category:
             print(f"Category: {args.category}")
@@ -106,7 +110,7 @@ def cmd_summary(args, service: ExpenseService):
         print("-" * 60)
         
         # Category breakdown
-        print("\nBreakdown by Category:")
+        print("Breakdown by Category:")
         print("-" * 60)
         
         # Sort categories by amount (descending)
@@ -122,7 +126,13 @@ def cmd_summary(args, service: ExpenseService):
         
         print("-" * 60)
         print(f"{'GRAND TOTAL':20s}: {summary['grand_total']:10.2f} {summary['currency']}")
-        print(f"{'Total Expenses':20s}: {summary['count']}")
+        print(f"{'Total Expenses':20s}: {summary['count']:10}")
+
+        print("-" * 60)
+        print(f"{'Average per Day':20s}: {summary['grand_total'] / 30:10.2f} {summary['currency']}")
+        print(f"{'Highest Expense':20s}: {summary['max_expense']:10.2f} {summary['currency']}")
+
+
         print("=" * 60 + "\n")
         
     except Exception as e:
@@ -134,7 +144,7 @@ def cmd_summary(args, service: ExpenseService):
 def cmd_delete(args, service: ExpenseService):
     """Handle delete command."""
     try:
-        logger.info(f"Command: delete - id={args.id}")
+        logger.info(" | ".join(f"{k}:{v}" for k,v in vars(args).items() if v not in [None, ""]))
         
         result = service.delete_expense(args.id)
         
@@ -153,7 +163,7 @@ def cmd_delete(args, service: ExpenseService):
 def cmd_edit(args, service: ExpenseService):
     """Handle edit command."""
     try:
-        logger.info(f"Command: edit - id={args.id}")
+        logger.info(" | ".join(f"{k}:{v}" for k,v in vars(args).items() if v not in [None, ""]))
         
         updates = {}
         if args.amount is not None:
